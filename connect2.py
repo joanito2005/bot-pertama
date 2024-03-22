@@ -10,6 +10,15 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='$', intents=intents)
 
+@bot.command()
+async def mem(ctx):
+    nama_images = random.choice(os.listdir('images'))
+    with open(f'images/{nama_images}', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture)
+
 @bot.event
 async def on_ready():
     print(f'We have logged in as {bot.user}')
